@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4e530d14-b5b3-41d3-b999-cbac8bc657ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Uno/Jogar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Uno/Jogar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Uno/META-INF/Uno.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Uno/MaoDoJogador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Uno/MaoDoJogador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Uno/Uno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Uno/Uno.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CartaColorida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CartaColorida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jogar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jogar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MaoDoJogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MaoDoJogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Uno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Uno.java" afterDir="false" />
-    </list>
+    <list default="true" id="4e530d14-b5b3-41d3-b999-cbac8bc657ea" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,22 +73,22 @@
       <screen x="0" y="0" width="1360" height="728" />
     </state>
     <state x="410" y="111" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1360.728@0.0.1360.728" timestamp="1592859177337" />
-    <state width="1317" height="6" key="GridCell.Tab.0.bottom" timestamp="1592957382005">
+    <state width="1317" height="298" key="GridCell.Tab.0.bottom" timestamp="1592960016361">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1317" height="6" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1592957382005" />
-    <state width="1317" height="6" key="GridCell.Tab.0.center" timestamp="1592957382005">
+    <state width="1317" height="298" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1592960016361" />
+    <state width="1317" height="298" key="GridCell.Tab.0.center" timestamp="1592960016360">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1317" height="6" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1592957382005" />
-    <state width="1317" height="6" key="GridCell.Tab.0.left" timestamp="1592957382005">
+    <state width="1317" height="298" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1592960016360" />
+    <state width="1317" height="298" key="GridCell.Tab.0.left" timestamp="1592960016360">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1317" height="6" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1592957382005" />
-    <state width="1317" height="6" key="GridCell.Tab.0.right" timestamp="1592957382005">
+    <state width="1317" height="298" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1592960016360" />
+    <state width="1317" height="298" key="GridCell.Tab.0.right" timestamp="1592960016361">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1317" height="6" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1592957382005" />
+    <state width="1317" height="298" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1592960016361" />
     <state x="376" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1592951648610">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
