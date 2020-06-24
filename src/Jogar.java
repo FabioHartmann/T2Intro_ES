@@ -6,8 +6,9 @@ public class Jogar {
         Uno baralho = new Uno();
         ArrayList<CartaColorida> mesa;
         String nomeJ1 = "", nomeJ2 = "";
-        int player = 1, cartaEscolhida;
+        int player = 1, cartaEscolhida, sums = 0;
         Scanner t = new Scanner(System.in);
+        boolean ativePlusFour = false;
 
         baralho.embaralhar();
 
@@ -29,30 +30,46 @@ public class Jogar {
 
         mesa = baralho.comprarCartas(1);
 
-
         // O Jogo
         while(j1.getMao().toArray().length > 0 && j2.getMao().toArray().length > 0){
+            System.out.println("----------  " + player + "  ---------" );
             CartaColorida ultimaCartaDaMesa = (CartaColorida) mesa.toArray()[mesa.toArray().length - 1];
             System.out.println("Carta da mesa: " +ultimaCartaDaMesa.getCor() + " " + ultimaCartaDaMesa.getSimbolo());
         if (player == 1) {
             System.out.println("Suas cartas:");
-            j1.getMao().forEach(carta-> System.out.print(carta.getCor() + " " + carta.getSimbolo() + "  |"));
-            System.out.println(j1.getNome() + " Digite o número da carta que deseja descartar:(conforme a ordem que aparece) ");
+            j1.getMao().forEach(carta -> System.out.print(carta.getCor() + " " + carta.getSimbolo() + "  |"));
             ArrayList<CartaColorida> cartasDescartaveis;
-            cartasDescartaveis = cartasDescartaveis(j1.getMao(), ultimaCartaDaMesa);
-//            System.out.println("Cartas Descartaveis length " + cartasDescartaveis.toArray().length );
+            if(ultimaCartaDaMesa.getSimbolo() == CartaColorida.Simbol.DRAWTWO && sums > 0){
+               cartasDescartaveis = responderMaisDois(j1.getMao(), ultimaCartaDaMesa);
+               if(cartasDescartaveis.toArray().length <= 0) {
+                   ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(sums);
+                   cartasCompradas.forEach(carta -> j1.adicionaCartaNaMao(carta));
+                   System.out.println("Suas Cartas são:");
+                   j1.getMao().forEach(carta -> System.out.print(carta.getCor() + " " + carta.getSimbolo() + "  |"));
+                   sums = 0;
+                   player ++;
+                   continue;
+               }
+            }else if(ultimaCartaDaMesa.getSimbolo() == CartaColorida.Simbol.PLUSFOUR && ativePlusFour) {
+                ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(4);
+                cartasCompradas.forEach(carta -> j1.adicionaCartaNaMao(carta));
+                System.out.println("Suas Cartas são:");
+                j1.getMao().forEach(carta -> System.out.print(carta.getCor() + " " + carta.getSimbolo() + "  |"));
+                ativePlusFour = false;
+                player ++;
+                continue;
+            } else{
+                cartasDescartaveis = cartasDescartaveis(j1.getMao(), ultimaCartaDaMesa);
+            }
             while(cartasDescartaveis.toArray().length == 0 ){
-                System.out.println("No while");
                 CartaColorida cartaComprada;
                 cartaComprada = baralho.comprarCarta();
                 System.out.print(cartaComprada.cor + " " + cartaComprada.simbolo);
                 j1.adicionaCartaNaMao(cartaComprada);
                 cartasDescartaveis = cartasDescartaveis(j1.getMao(), ultimaCartaDaMesa);
                 System.out.println("Cartas Descartaveis após compra" + cartasDescartaveis.toArray().length );
-//                if(cartasDescartaveis.toArray().length == 0 ) break;
             }
-
-
+            System.out.println(j1.getNome() + " Digite o número da carta que deseja descartar:(conforme a ordem que aparece) ");
             System.out.println("As cartas descartaveis são:");
             cartasDescartaveis.forEach(carta -> System.out.println(carta.cor + " " + carta.simbolo));
 
@@ -60,20 +77,59 @@ public class Jogar {
 
             CartaColorida cartaDescartada = (CartaColorida) cartasDescartaveis.toArray()[cartaEscolhida];
 
-            mesa.add(cartaDescartada);
             j1.descartarCarta(cartaDescartada);
 
             if(cartaDescartada.getSimbolo() != CartaColorida.Simbol.SKIP){
+                if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.DRAWTWO){
+                    sums = sums+2;
+                }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.PLUSFOUR){
+                    ativePlusFour = true;
+                    String corEscolhida = "";
+                    while (corEscolhida.length() <= 0){
+                        System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
+                        corEscolhida = t.nextLine();
+                    }
+                    cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida) );
+                }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.COLORCHANGE){
+                    String corEscolhida ="";
+                    while (corEscolhida.length() <= 0){
+                        System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
+                        corEscolhida = t.nextLine();
+                    }
+                    cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
+                }
                 player ++;
             }
+            mesa.add(cartaDescartada);
             cartasDescartaveis.clear();
 
         }else{
             System.out.println("Suas cartas:");
             j2.getMao().forEach(carta-> System.out.print(carta.getCor() + " " + carta.getSimbolo()  + "  |"));
-            System.out.println(j2.getNome() + " Digite o número da carta que deseja descartar:(conforme a ordem que aparece) ");
             ArrayList<CartaColorida> cartasDescartaveis;
-            cartasDescartaveis = cartasDescartaveis(j2.getMao(), ultimaCartaDaMesa);
+            if(ultimaCartaDaMesa.getSimbolo() == CartaColorida.Simbol.DRAWTWO && sums > 0){
+                cartasDescartaveis = responderMaisDois(j2.getMao(), ultimaCartaDaMesa);
+                if(cartasDescartaveis.toArray().length <= 0) {
+                    ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(sums);
+                    cartasCompradas.forEach(carta -> j2.adicionaCartaNaMao(carta));
+                    System.out.println("Suas Cartas são:");
+                    j2.getMao().forEach(carta -> System.out.print(carta.getCor() + " " + carta.getSimbolo() + "  |"));
+                    sums = 0;
+                    player --;
+                    continue;
+                }
+            }else if(ultimaCartaDaMesa.getSimbolo() == CartaColorida.Simbol.PLUSFOUR && ativePlusFour) {
+                ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(4);
+                cartasCompradas.forEach(carta -> j2.adicionaCartaNaMao(carta));
+                System.out.println("Suas Cartas são:");
+                j2.getMao().forEach(carta -> System.out.print(carta.getCor() + " " + carta.getSimbolo() + "  |"));
+                ativePlusFour = false;
+                player --;
+                continue;
+            }
+            else{
+                cartasDescartaveis = cartasDescartaveis(j2.getMao(), ultimaCartaDaMesa);
+            }
             System.out.println("Cartas Descartaveis length " + cartasDescartaveis.toArray().length );
             while(cartasDescartaveis.toArray().length == 0 ){
                 System.out.println("No while");
@@ -84,7 +140,7 @@ public class Jogar {
                 cartasDescartaveis = cartasDescartaveis(j2.getMao(), ultimaCartaDaMesa);
                 System.out.println("Cartas Descartaveis após compra" + cartasDescartaveis.toArray().length );
             }
-
+            System.out.println(j2.getNome() + " Digite o número da carta que deseja descartar:(conforme a ordem que aparece) ");
             System.out.println("As cartas descartaveis são:");
             cartasDescartaveis.forEach(carta -> System.out.println(carta.cor + " " + carta.simbolo));
 
@@ -92,12 +148,30 @@ public class Jogar {
 
             CartaColorida cartaDescartada = (CartaColorida) cartasDescartaveis.toArray()[cartaEscolhida];
 
-            mesa.add(cartaDescartada);
             j2.descartarCarta(cartaDescartada);
 
             if(cartaDescartada.getSimbolo() != CartaColorida.Simbol.SKIP){
+                  if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.DRAWTWO){
+                    sums = sums + 2;
+                }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.PLUSFOUR){
+                      ativePlusFour = true;
+                      String corEscolhida = "";
+                      while (corEscolhida.length() <= 0){
+                          System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
+                          corEscolhida = t.nextLine();
+                      }
+                      cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
+                  }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.COLORCHANGE){
+                      String corEscolhida ="";
+                      while (corEscolhida.length() <= 0){
+                          System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
+                          corEscolhida = t.nextLine();
+                  }
+                      cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
+                }
                 player --;
             }
+            mesa.add(cartaDescartada);
             cartasDescartaveis.clear();
         }
 
@@ -116,6 +190,14 @@ public class Jogar {
            cartas.forEach(carta -> {
                if(carta.getSimbolo() == cartaMesa.getSimbolo() || carta.getCor() == cartaMesa.getCor() || carta.getCor() == CartaColorida.Color.BLACK ) cartasElegiveis.add(carta);
            });
+        return cartasElegiveis;
+    }
+
+    public static ArrayList<CartaColorida> responderMaisDois(ArrayList<CartaColorida> cartas, CartaColorida cartaMesa){
+        ArrayList<CartaColorida>  cartasElegiveis = new ArrayList<CartaColorida>();
+        cartas.forEach(carta -> {
+            if(carta.getSimbolo() == cartaMesa.getSimbolo()) cartasElegiveis.add(carta);
+        });
         return cartasElegiveis;
     }
 
