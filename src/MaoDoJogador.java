@@ -14,6 +14,7 @@ public class MaoDoJogador {
         this.mao.remove(carta);
     }
 
+
     public void adicionaCartaNaMao(CartaColorida carta) {
        this.mao.add(carta);
     }
