@@ -8,7 +8,6 @@ public class CartaColorida {
         GREEN  { public String toString() { return "GREEN"; }},
         YELLOW { public String toString() { return "YELLOW"; }},
         BLACK { public String toString() { return "BLACK"; }},
-
     }
 
     public enum Simbol {
@@ -26,11 +25,8 @@ public class CartaColorida {
         REVERSE { public String toString() { return "REVERSE";}},
         DRAWTWO { public String toString() { return "+2";}},
 
-
         COLORCHANGE { public String toString() { return "COLORCHANGE";}},
         PLUSFOUR    { public String toString() { return "PLUSFOUR";}}
-
-
     }
 
 

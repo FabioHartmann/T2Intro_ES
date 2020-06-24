@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 public class Uno {
     ArrayList<CartaColorida> cardList = new ArrayList();
@@ -34,6 +35,22 @@ public class Uno {
             cardList.set(index,cardList.get(i));
             cardList.set(i,c);
         }
+    }
+
+    public CartaColorida comprarCarta() {
+        CartaColorida cartaComprada = (CartaColorida) this.cardList.toArray()[0];
+        this.cardList.remove(0);
+        return cartaComprada;
+    }
+
+    public ArrayList<CartaColorida> comprarCartas(int quantidade){
+        List<CartaColorida> cartas = this.cardList.subList(0, quantidade);
+        ArrayList cast = new ArrayList(cartas);
+
+        for(int index = quantidade - 1; index > 0; index--) {
+            this.cardList.remove(index);
+        }
+    return cast;
     }
 
 
