@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Jogar {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Uno baralho = new Uno();
         ArrayList<CartaColorida> mesa;
-        String nomeJ1 = "", nomeJ2 = "";
+        String nomeJ1 = "", nomeJ2 = "", uno="";
         int player = 1, cartaEscolhida, sums = 0;
         Scanner t = new Scanner(System.in);
         boolean ativePlusFour = false;
@@ -91,7 +92,7 @@ public class Jogar {
                     }
                     cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida) );
                 }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.COLORCHANGE){
-                    String corEscolhida ="";
+                    String corEscolhida = "";
                     while (corEscolhida.length() <= 0){
                         System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
                         corEscolhida = t.nextLine();
@@ -101,6 +102,18 @@ public class Jogar {
                 player ++;
             }
             mesa.add(cartaDescartada);
+            if(j1.getMao().toArray().length == 1){
+                System.out.println("Uno?");
+                while(uno.length() < 3){
+                    uno = t.nextLine();
+                    Thread.sleep(10000);
+                    continue;
+                }
+                if(uno.toLowerCase() !="uno"){
+                    ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(2);
+                    cartasCompradas.forEach(carta -> j1.adicionaCartaNaMao(carta));
+                }
+            }
             cartasDescartaveis.clear();
 
         }else{
@@ -132,7 +145,6 @@ public class Jogar {
             }
             System.out.println("Cartas Descartaveis length " + cartasDescartaveis.toArray().length );
             while(cartasDescartaveis.toArray().length == 0 ){
-                System.out.println("No while");
                 CartaColorida cartaComprada;
                 cartaComprada = baralho.comprarCarta();
                 System.out.print(cartaComprada.cor + " " + cartaComprada.simbolo);
@@ -162,7 +174,7 @@ public class Jogar {
                       }
                       cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
                   }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.COLORCHANGE){
-                      String corEscolhida ="";
+                      String corEscolhida = "";
                       while (corEscolhida.length() <= 0){
                           System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
                           corEscolhida = t.nextLine();
@@ -172,15 +184,27 @@ public class Jogar {
                 player --;
             }
             mesa.add(cartaDescartada);
+            if(j2.getMao().toArray().length == 1){
+                System.out.println("Uno?");
+                while(uno.length() < 3){
+                    uno = t.nextLine();
+                    Thread.sleep(10000);
+                    continue;
+                }
+                if(uno.toLowerCase() !="uno"){
+                    ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(2);
+                    cartasCompradas.forEach(carta -> j2.adicionaCartaNaMao(carta));
+                }
+            }
             cartasDescartaveis.clear();
         }
 
         }
 
         if((j1.getMao().toArray().length == 0 )){
-            System.out.println("Parabéns " + j1.getNome() + "você venceu a partida");
+            System.out.println("Parabéns " + j1.getNome() + " você venceu a partida");
         } else{
-            System.out.println("Parabéns " + j2.getNome() + "você venceu a partida");
+            System.out.println("Parabéns " + j2.getNome() + " você venceu a partida");
         }
 
     }
