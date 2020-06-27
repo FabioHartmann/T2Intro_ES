@@ -88,14 +88,14 @@ public class Jogar {
                     String corEscolhida = "";
                     while (corEscolhida.length() <= 0){
                         System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
-                        corEscolhida = t.nextLine();
+                        corEscolhida = t.nextLine().toUpperCase();
                     }
                     cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida) );
                 }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.COLORCHANGE){
                     String corEscolhida = "";
                     while (corEscolhida.length() <= 0){
                         System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
-                        corEscolhida = t.nextLine();
+                        corEscolhida = t.nextLine().toUpperCase();
                     }
                     cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
                 }
@@ -170,14 +170,14 @@ public class Jogar {
                       String corEscolhida = "";
                       while (corEscolhida.length() <= 0){
                           System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
-                          corEscolhida = t.nextLine();
+                          corEscolhida = t.nextLine().toUpperCase();
                       }
                       cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
                   }else if(cartaDescartada.getSimbolo() == CartaColorida.Simbol.COLORCHANGE){
                       String corEscolhida = "";
                       while (corEscolhida.length() <= 0){
                           System.out.println("Selecione a cor? RED / BLUE / YELLOW / GREEN");
-                          corEscolhida = t.nextLine();
+                          corEscolhida = t.nextLine().toUpperCase();
                   }
                       cartaDescartada.setCor(CartaColorida.Color.valueOf(corEscolhida));
                 }
