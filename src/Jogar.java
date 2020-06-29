@@ -6,7 +6,7 @@ public class Jogar {
     public static void main(String[] args) throws InterruptedException {
         Uno baralho = new Uno();
         ArrayList<CartaColorida> mesa;
-        String nomeJ1 = "", nomeJ2 = "", uno="";
+        String nomeJ1 = "", nomeJ2 = "";
         int player = 1, cartaEscolhida, sums = 0;
         Scanner t = new Scanner(System.in);
         boolean ativePlusFour = false;
@@ -65,10 +65,10 @@ public class Jogar {
             while(cartasDescartaveis.toArray().length == 0 ){
                 CartaColorida cartaComprada;
                 cartaComprada = baralho.comprarCarta();
-                System.out.print(cartaComprada.cor + " " + cartaComprada.simbolo);
+                System.out.println("Compra: " + cartaComprada.cor + " " + cartaComprada.simbolo);
                 j1.adicionaCartaNaMao(cartaComprada);
                 cartasDescartaveis = cartasDescartaveis(j1.getMao(), ultimaCartaDaMesa);
-                System.out.println("Cartas Descartaveis após compra" + cartasDescartaveis.toArray().length );
+                System.out.println("Cartas Descartaveis após compra " + cartasDescartaveis.toArray().length );
             }
             System.out.println(j1.getNome() + " Digite o número da carta que deseja descartar:(conforme a ordem que aparece) ");
             System.out.println("As cartas descartaveis são:");
@@ -103,16 +103,7 @@ public class Jogar {
             }
             mesa.add(cartaDescartada);
             if(j1.getMao().toArray().length == 1){
-                System.out.println("Uno?");
-                while(uno.length() < 3){
-                    uno = t.nextLine();
-                    Thread.sleep(10000);
-                    continue;
-                }
-                if(uno.toLowerCase() !="uno"){
-                    ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(2);
-                    cartasCompradas.forEach(carta -> j1.adicionaCartaNaMao(carta));
-                }
+                System.out.println("Uno");
             }
             cartasDescartaveis.clear();
 
@@ -147,10 +138,10 @@ public class Jogar {
             while(cartasDescartaveis.toArray().length == 0 ){
                 CartaColorida cartaComprada;
                 cartaComprada = baralho.comprarCarta();
-                System.out.print(cartaComprada.cor + " " + cartaComprada.simbolo);
+                System.out.println("Compra: " + cartaComprada.cor + " " + cartaComprada.simbolo);
                 j2.adicionaCartaNaMao(cartaComprada);
                 cartasDescartaveis = cartasDescartaveis(j2.getMao(), ultimaCartaDaMesa);
-                System.out.println("Cartas Descartaveis após compra" + cartasDescartaveis.toArray().length );
+                System.out.println("Cartas Descartaveis após compra " + cartasDescartaveis.toArray().length );
             }
             System.out.println(j2.getNome() + " Digite o número da carta que deseja descartar:(conforme a ordem que aparece) ");
             System.out.println("As cartas descartaveis são:");
@@ -185,16 +176,7 @@ public class Jogar {
             }
             mesa.add(cartaDescartada);
             if(j2.getMao().toArray().length == 1){
-                System.out.println("Uno?");
-                while(uno.length() < 3){
-                    uno = t.nextLine();
-                    Thread.sleep(10000);
-                    continue;
-                }
-                if(uno.toLowerCase() !="uno"){
-                    ArrayList<CartaColorida > cartasCompradas = baralho.comprarCartas(2);
-                    cartasCompradas.forEach(carta -> j2.adicionaCartaNaMao(carta));
-                }
+                System.out.println("Uno");
             }
             cartasDescartaveis.clear();
         }
