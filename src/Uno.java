@@ -45,9 +45,10 @@ public class Uno {
     public ArrayList<CartaColorida> comprarCartas(int quantidade){
         List<CartaColorida> cartas = this.cardList.subList(0, quantidade);
         ArrayList cast = new ArrayList(cartas);
-
-        for(int index = quantidade - 1; index > 0; index--) {
+        int index = 0;
+        while(quantidade>index){
             this.cardList.remove(index);
+            index++;
         }
     return cast;
     }
